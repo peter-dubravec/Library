@@ -1,0 +1,27 @@
+extends layout 
+
+block content 
+    h1 Author: #{author.name}
+    p #{author.date_of_birth_formatted} - #{author.date_of_death_formatted}
+
+
+    div(style="margin-left:20px;margin-top:20px")
+        h4 Books
+
+        dl 
+            each book in author_books
+                dt
+                    a(href=book.url) #{book.title}
+                dd #{book.summary}
+            
+            else 
+                p This author has no books.
+                a(href=`/catalog/author/${author._id}/delete`)
+                    button.btn.btn-primary(type="submit") Delete Author
+                span(style="margin-left:15px;")
+                    a(href=`/catalog/author/${author._id}/update`)
+                        button.btn.btn-primary(type="submit") Update Author
+        
+        
+        
+        

@@ -1,0 +1,24 @@
+extends layout 
+
+block content
+    h1 ID: #{bookinstance._id}
+
+    p #[strong Title:]
+        a(href=bookinstance.book.url) #{bookinstance.book.title}
+    p #[strong Impring:] #{bookinstance.imprint}
+
+    p #[strong Status:] 
+        if bookinstance.status=='Availible'
+            span.text-success #{bookinstance.status}
+        else if bookinstance.status=='Maintanance'
+            span.text-danger #{bookinstance.status}
+        else 
+            span.text-warning #{bookinstance.status}
+        
+    if bookinstance.status!='Availible'
+        p #[strong Due back:] #{bookinstance.due_back_formatted}
+    
+    a(href=`/catalog/bookinstance/${bookinstance._id}/update`) 
+        button.btn.btn-primary(type="submit") Update
+    a(href=`/catalog/bookinstance/${bookinstance._id}/delete`) 
+        button.btn.btn-primary(type="submit") Delete

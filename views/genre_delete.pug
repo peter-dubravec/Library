@@ -1,0 +1,16 @@
+extends layout
+
+block content 
+    h1=title
+
+    p Are you sure you want to delete genre: #{genre.name}?
+
+    form(action="", method="POST")
+         button.btn.btn-primary(type="submit") Delete
+    
+    if books
+        p Can't delete this gender because these books are associated with it.
+
+        for book in books 
+            li 
+                book
